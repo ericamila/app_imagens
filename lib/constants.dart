@@ -27,3 +27,20 @@ InputDecoration myDecoration(String texto, {Icon? icone}) {
       prefixIcon: icone
   );
 }
+
+ClipRRect imageLeading(String? foto) {
+  return ClipRRect(
+    borderRadius: BorderRadius.circular(50.0),
+    child: foto != null
+        ? Image.network(
+            height: 58,
+            width: 58,
+            foto!,
+            fit: BoxFit.cover,
+          )
+        : Container(
+            color: Colors.grey,
+            child: Image.asset(imagemPadraoUrl),
+          ),
+  );
+}
