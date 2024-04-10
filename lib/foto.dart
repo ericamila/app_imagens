@@ -14,9 +14,12 @@ class Foto extends StatelessWidget {
 
   final String? imageUrl;
   final void Function(String imageUrl) onUpload;
-  final String? uUID;
-  final size = 250.0;
   final ImagePicker picker = ImagePicker();
+  final String? uUID;
+  final double size = 250;
+  final double maxWidth = 500;
+  final double maxHeight = 575;
+  final int quality = 80; // inteiro de 0-100
 
   _recuperaFoto(XFile? image) async {
     final imageExtension = image?.path.split('.').last.toLowerCase();
@@ -63,8 +66,11 @@ class Foto extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () async {
-                final XFile? image =
-                    await picker.pickImage(source: ImageSource.gallery);
+                final XFile? image = await picker.pickImage(
+                    source: ImageSource.gallery,
+                    maxHeight: maxHeight,
+                    maxWidth: maxWidth,
+                    imageQuality: quality);
                 if (image == null) {
                   return;
                 }
@@ -74,8 +80,11 @@ class Foto extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                final XFile? image =
-                    await picker.pickImage(source: ImageSource.camera);
+                final XFile? image = await picker.pickImage(
+                    source: ImageSource.camera,
+                    maxHeight: maxHeight,
+                    maxWidth: maxWidth,
+                    imageQuality: quality);
                 if (image == null) {
                   return;
                 }
