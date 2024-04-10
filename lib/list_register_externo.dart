@@ -45,20 +45,7 @@ class _ListaCadastroState extends State<ListaCadastro> {
                           final Externo externo = items[index];
                           return ListTile(
                               title: Text(externo.nome),
-                              leading: ClipRRect(
-                                borderRadius: BorderRadius.circular(50.0),
-                                child: externo.foto != null
-                                    ? Image.network(
-                                        height: 58,
-                                        width: 58,
-                                        externo.foto!,
-                                        fit: BoxFit.cover,
-                                      )
-                                    : Container(
-                                        color: Colors.grey,
-                                        child: Image.asset(imagemPadraoUrl),
-                                      ),
-                              ),
+                              imageLeading(externo.foto),
                               onTap: () {},
                               trailing: PopupMenuButton<bool>(
                                 onSelected: (value) async {
